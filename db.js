@@ -1,11 +1,10 @@
-const mysql = require('mysql');
+var mysql      = require('mysql');
 
-const connection = mysql.createConnection({
-    connectionLimit: 10,
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'gestion_contact_cadiou',
+var connection = mysql.createConnection({
+      host     : process.env.MYSQL_ADDON_HOST,
+      database : process.env.MYSQL_ADDON_DB,
+      user     : process.env.MYSQL_ADDON_USER,
+      password : process.env.MYSQL_ADDON_PASSWORD
 });
 
 module.exports = connection;
