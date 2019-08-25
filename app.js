@@ -19,12 +19,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Import des routes de l'API.
 const entrepriseRouter = require('./routes/entrepriseRoutes');
-const contactRouter = require('./routes/contactRoutes');
+const contactRouter = require('./routes/contactRoutes')
 
 //Routes d'accès aux entreprises :
-app.use('/api/v1/entreprises', entrepriseRouter);
-//Routes d'accès aux contacts des entreprises :
-app.use('/api/v1/contacts', contactRouter);
+app.use('/v1/entreprises', entrepriseRouter);
+//Routes d'accès aux contacts :
+app.use('/v1/contacts', contactRouter)
 
 
 module.exports = app;
