@@ -18,7 +18,7 @@ Contact.findAllContacts = () => {
 /* reccuperation de tout les contacts d'une entreprise*/
 Contact.findAllContactsInEntreprise = (id_entreprise) => {
     return new Promise((resolve, reject) => {
-        connection.query('SELECT `c`.* FROM `contact` c, `entreprise` e WHERE `c`.`id_entreprise`=`e`.`id_entreprise` AND `e`.`id_entreprise`=?', [id_entreprise], (err, res) => {
+        connection.query('SELECT c.* FROM `contact` c, `entreprise` e WHERE c.id_entreprise=e.id_entreprise AND e.id_entreprise=?', [id_entreprise], (err, res) => {
             if (err) {
                 return reject(err)
             }
@@ -28,9 +28,9 @@ Contact.findAllContactsInEntreprise = (id_entreprise) => {
 };
 
 //récupérer un contact avec un paramètre id.
-Contact.findOneContact = id_contact => {
+Contact.findOneContact = id_entreprise => {
     return new Promise((resolve, reject) => {
-        connection.query('SELECT * FROM contact WHERE id_contact = ?', [id_contact], (err, res) => {
+        connection.query('SELECT c.* FROM contact c, entretrise e WHERE c.id_entreprise = e.id_entreprise AND e.id_entreprise=?', [id_entreprise], (err, res) => {
             if (err) {
                 return reject(err)
             }
