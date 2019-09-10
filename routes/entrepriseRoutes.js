@@ -2,10 +2,10 @@
 const express = require('express');
 const entrepriseRouter = express.Router();
 
-const Entreprise = require('../controllers/entrpriseController');
+const Entreprise = require('../controllers/entrepriseController');
 
-//recuperation des entreprises
-entrepriseRouter.get('/', async (req, res) => {
+//recuperation les entreprises
+entrepriseRouter.get('/', async function(req, res) {
     try {
         let result = await Entreprise.findAllEntreprises();
         res.json(result);
@@ -16,9 +16,9 @@ entrepriseRouter.get('/', async (req, res) => {
 });
 
 //recuperation d'une entreprise
-entrepriseRouter.get('/:id', async (req, res) => {
+entrepriseRouter.get('/:id_entreprise', async (req, res) => {
     try {
-        let result = await Entreprise.findOneEntreprise(req.params.id);
+        let result = await Entreprise.findOneEntreprise(req.params.id_entreprise);
         res.json(result);
     } catch (err) {
         console.log(err);
@@ -39,10 +39,10 @@ entrepriseRouter.post('/', async (req, res) => {
 });
 
 /*modification d'une entreprise dans la base de donnée */
-entrepriseRouter.put('/:id', async (req, res) => {
+entrepriseRouter.put('/:id_entreprise', async (req, res) => {
     try {
         const entreprise = req.body;
-        let result = await Entreprise.updateEntreprise(entreprise, req.params.id);
+        let result = await Entreprise.updateEntreprise(entreprise, req.params.id_entreprise);
         res.json(result);
     } catch (err) {
         console.log(err);
@@ -51,9 +51,9 @@ entrepriseRouter.put('/:id', async (req, res) => {
 });
 
 //supression d'une entreprise
-entrepriseRouter.delete('/:id', async (req, res) => {
+entrepriseRouter.delete('/:id_entreprise', async (req, res) => {
     try {
-        let result = await Entreprise.deleteEntreprise(req.params.id);
+        let result = await Entreprise.deleteEntreprise(req.params.id_entreprise);
         res.json(result);
     } catch (err) {
         console.log(err);

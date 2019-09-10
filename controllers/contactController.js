@@ -1,73 +1,94 @@
-const express = require('express');
-const connection = require('../db')
+const connection = require(' ../db ')
 
-/*les requetes sur la table des contacts*/
+    / * les demandes sur la table des contacts * /
 let Contact = {};
 
-/* reccuperation de tout les contacts*/
-Contact.findAllContacts = () => {
-    return new Promise((resolve, reject) => {
-        connection.query('SELECT * FROM contact', (err, res) => {
-            if (err) return reject(err);
-            return resolve(res);
+/ * reccuperation de tout les contacts * /
+Contactez.findAllContacts = () => {
+    renvoyer une  nouvelle  promesse((résoudre, rejeter) => {
+        connexion.query(' SELECT * FROM `contact` ', (err, res) => {
+            si(err) {
+                retourne le  rejet(err)
+            }
+            retour  résoudre(res)
         });
     });
 };
 
-//récupérer une contact avec un paramètre id.
-Contact.findOneContact = id => {
-    return new Promise((resolve, reject) => {
-        connection.query('SELECT * FROM contact WHERE id = ?', [id], (err, res) => {
-            if (err) return reject(err);
-            return resolve(res[0]);
+/ * récupération de tous les contacts d'une entreprise * /
+Contactez.findAllContactsInEntreprise = (id_entreprise) => {
+    renvoyer une  nouvelle  promesse((résoudre, rejeter) => {
+        connexion.requête(' SELECT c. * FROM `contact` c,` entreprise` et WHERE c.id_entreprise = e.id_entreprise ET e.id_entreprise =? ', [id_entreprise], (err, res) => {
+            si(err) {
+                retourne le  rejet(err)
+            }
+            retour  résoudre(res)
         });
     });
 };
 
-/* la creation d'une contact */
-Contact.newContact = () => {
-    return new Promise((resolve, reject) => {
+// récupérer un contact avec un paramètre id.
+Contactez.findOneContact = id_entreprise => {
+    renvoyer une  nouvelle  promesse((résoudre, rejeter) => {
+        connexion.requête(' SELECT c. * DE contact c, entretrise e WHERE c.id_entreprise = e.id_entreprise ET e.id_entreprise =? ', [id_entreprise], (err, res) => {
+            si(err) {
+                retourne le  rejet(err)
+            }
+            résolution de retour(res[0])
+        });
+    });
+};
+
+/ * la création d'un contact * /
+Contactez.newContact = contact => {
+    renvoyer une  nouvelle  promesse((résoudre, rejeter) => {
         const params = [
             contact.nom,
-            contact.prenom,
+            contact.avant,
             contact.fonction,
             contact.email,
             contact.tel,
-            contact.id_entreprise,
-        ];
-        const query = 'INSERT INTO contact (nom,prenom,fonction,email,tel,id_entreprise) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        connection.query(query, params, (err, res) => {
-            if (err) return reject(err);
-            resolve(res);
+            contact.id_entreprise
+        ]
+        const query = ' INSERT INTO contact (nom, prénom, fonction, email, tel, id_entreprise) VALEURS (?,?,?,?,?,?) ';
+        connexion.query(query, params, (err, res) => {
+            si(err) {
+                retourne le  rejet(err)
+            }
+            retour  résoudre(res)
         });
     });
 };
 
-/* la modification d'une contact */
-Contact.newContact = () => {
-    return new Promise((resolve, reject) => {
+/ * la modification d'un contact * /
+Contactez.updateContact = (contact, id_contact) => {
+    renvoyer une  nouvelle  promesse((résoudre, rejeter) => {
         const params = [
             contact.nom,
-            contact.prenom,
+            contact.avant,
             contact.fonction,
             contact.email,
             contact.tel,
-            contact.id_entreprise,
-        ];
-        const query = 'INSERT INTO contact (nom = ?,prenom = ?,fonction = ?,email = ?,tel = ?,id_entreprise = ?) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        db.query(query, params, (err, res) => {
-            if (err) return reject(err);
-            resolve(res);
+            contact.id_entreprise
+        ]
+        const requête = ' UPDATE `entreprise` SET` nom` =?, `prenom` =?,` fonction` =?, `email` =?,` tel` =?, `id_entreprise` =? WHERE `contact`.`id_contact` =?; '
+        connexion.query(query, params, (err, res) => {
+            si(err) {
+                renvoyer  rejeter(err);
+            }
+            retour  résoudre(res);
         });
     });
 };
 
-//supprimer une contact avec un paramètre id.
-Contact.deleteContact = id => {
-    return new Promise((resolve, reject) => {
-        connection.query('DELETE FROM contact WHERE id = ?', [id], (err, res) => {
-            if (err) return reject(err);
-            resolve(res);
+// supprimer un contact avec un paramètre id.
+Contactez.deleteContact = id_contact => {
+    renvoyer une  nouvelle  promesse((résoudre, rejeter) => {
+        connexion.query(' DELETE FROM contact WHERE id_contact =? ', [id_contact], (err, res) => {
+            si(err) {
+                retourne le  rejet(err)
+            }
+            résolution de retour(res[0])
         });
     });
 };
