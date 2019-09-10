@@ -34,9 +34,10 @@ Entreprise.newEntreprise = () => {
             entreprise.ville,
             entreprise.email,
             entreprise.tel,
+            entreprise.status,
             entreprise.description,
         ];
-        const query = 'INSERT INTO entreprises (raisonSocial,adresse,cp,ville,email,tel,description) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO entreprise (raisonSocial,adresse,cp,ville,email,tel,status,description) VALUES (?, ?, ?, ?, ?, ?, ?)';
         connection.query(query, params, (err, res) => {
             if (err) return reject(err);
             resolve(res);
@@ -54,9 +55,10 @@ Entreprise.newEntreprise = () => {
             entreprise.ville,
             entreprise.email,
             entreprise.tel,
+            entreprise.status,
             entreprise.description,
         ];
-        const query = 'INSERT INTO invoice (raisonSocial = ?,adresse = ?,cp = ?,ville = ?,email = ?,tel = ?,description = ?) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO entreprise (raisonSocial = ?,adresse = ?,cp = ?,ville = ?,email = ?,tel = ?,status = ?,description = ?) VALUES (?, ?, ?, ?, ?, ?, ?)';
         db.query(query, params, (err, res) => {
             if (err) return reject(err);
             resolve(res);

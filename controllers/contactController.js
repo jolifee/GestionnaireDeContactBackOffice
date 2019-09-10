@@ -35,7 +35,7 @@ Contact.newContact = () => {
             contact.tel,
             contact.id_entreprise,
         ];
-        const query = 'INSERT INTO contacts (nom,prenom,fonction,email,tel,id_entreprise) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO contact (nom,prenom,fonction,email,tel,id_entreprise) VALUES (?, ?, ?, ?, ?, ?, ?)';
         connection.query(query, params, (err, res) => {
             if (err) return reject(err);
             resolve(res);
@@ -54,7 +54,7 @@ Contact.newContact = () => {
             contact.tel,
             contact.id_entreprise,
         ];
-        const query = 'INSERT INTO invoice (nom = ?,prenom = ?,fonction = ?,email = ?,tel = ?,id_entreprise = ?) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO contact (nom = ?,prenom = ?,fonction = ?,email = ?,tel = ?,id_entreprise = ?) VALUES (?, ?, ?, ?, ?, ?, ?)';
         db.query(query, params, (err, res) => {
             if (err) return reject(err);
             resolve(res);
