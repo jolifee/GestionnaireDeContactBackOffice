@@ -15,22 +15,10 @@ Contact.findAllContacts = () => {
     });
 };
 
-/* reccuperation de tout les contacts d'une entreprise*/
-Contact.findAllContactsInEntreprise = (id) => {
-    return new Promise((resolve, reject) => {
-        connection.query('SELECT contact.* FROM `contact`, `entreprise` WHERE contact.id_entreprise=entreprise.id AND id=?', [id], (err, res) => {
-            if (err) {
-                return reject(err)
-            }
-            return resolve(res)
-        });
-    });
-};
-
 //récupérer un contact avec un paramètre id.
-Contact.findOneContact = id => {
+Contact.findOneContact = id_contact => {
     return new Promise((resolve, reject) => {
-        connection.query('SELECT c.* FROM contact c, entretrise e WHERE c.id_entreprise = e.id AND e.id=?', [id], (err, res) => {
+        connection.query('SELECT * FROM contact WHERE id_contact=?', [id_contact], (err, res) => {
             if (err) {
                 return reject(err)
             }
@@ -69,9 +57,10 @@ Contact.updateContact = (contact, id_contact) => {
             contact.fonction,
             contact.email,
             contact.tel,
-            contact.id_entreprise
+            contact.id_entreprise,
+            id_contact
         ]
-        const query = 'UPDATE `entreprise` SET `nom`=?, `prenom`=?, `fonction`=?, `email`=?, `tel`=?, `id_entreprise`=? WHERE `contact`.`id_contact`= ?;'
+        const query = 'UPDATE `contact` SET `nom`=?, `prenom`=?, `fonction`=?, `email`=?, `tel`=?, `id_entreprise`=? WHERE `id_contact`= ?;'
         connection.query(query, params, (err, res) => {
             if (err) {
                 return reject(err);

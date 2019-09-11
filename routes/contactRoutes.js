@@ -15,16 +15,6 @@ contactRouter.get('/', async function (req, res) {
     }
 });
 
-//recuperation des contacts d'une entreprise
-contactRouter.get('/entreprises/:id', async function (req, res) {
-    try {
-        let result = await Contact.findAllContactsInEntreprise(req.param.id);
-        res.json(result);
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
-    }
-});
 
 //recuperation d'un contact
 contactRouter.get('/:id_contact', async (req, res) => {
@@ -53,7 +43,7 @@ contactRouter.post('/', async (req, res) => {
 contactRouter.put('/:id_contact', async (req, res) => {
     try {
         const contact = req.body;
-        let result = await Contact.updateContact(contact, req.params.id);
+        let result = await Contact.updateContact(contact, req.params.id_contact);
         res.json(result);
     } catch (err) {
         console.log(err);
