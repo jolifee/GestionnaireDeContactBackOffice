@@ -54,7 +54,7 @@ contactRouter.put('/:id_contact', async (req, res) => {
 //supression d'une contact
 contactRouter.delete('/:id_contact', async (req, res) => {
     try {
-        let result = await Contact.deleteContact(req.params.id);
+        let result = await Contact.deleteContact(req.params.id_contact);
         res.json(result);
     } catch (err) {
         console.log(err);
