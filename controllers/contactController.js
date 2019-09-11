@@ -18,7 +18,7 @@ Contact.findAllContacts = () => {
 /* reccuperation de tout les contacts d'une entreprise*/
 Contact.findAllContactsInEntreprise = (id) => {
     return new Promise((resolve, reject) => {
-        connection.query('SELECT c.* FROM `contact` c, `entreprise` e WHERE c.id_entreprise=e.id AND e.id=?', [id], (err, res) => {
+        connection.query('SELECT contact.* FROM `contact`, `entreprise` WHERE contact.id_entreprise=entreprise.id AND id=?', [id], (err, res) => {
             if (err) {
                 return reject(err)
             }
@@ -50,7 +50,7 @@ Contact.newContact = contact => {
             contact.tel,
             contact.id_entreprise
         ]
-        const query = 'INSERT INTO contact (nom, prenom, fonction, email, tel, id_entreprise) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO contact (nom, prenom, fonction, email, tel, id_entreprise) VALUES (?, ?, ?, ?, ?, ?) ';
         connection.query(query, params, (err, res) => {
             if (err) {
                 return reject(err)

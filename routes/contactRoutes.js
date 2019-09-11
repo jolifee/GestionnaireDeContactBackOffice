@@ -15,7 +15,7 @@ contactRouter.get('/', async function (req, res) {
     }
 });
 
-//recuperation les contacts d'une entreprise
+//recuperation des contacts d'une entreprise
 contactRouter.get('/entreprises/:id', async function (req, res) {
     try {
         let result = await Contact.findAllContactsInEntreprise(req.param.id);
