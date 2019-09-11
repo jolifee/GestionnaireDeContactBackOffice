@@ -16,9 +16,9 @@ Entreprise.findAllEntreprises = () => {
 };
 
 //récupérer une entreprise avec un paramètre id.
-Entreprise.findOneEntreprise = id_entreprise => {
+Entreprise.findOneEntreprise = id => {
     return new Promise((resolve, reject) => {
-        connection.query('SELECT * FROM entreprise WHERE id_entreprise = ?', [id_entreprise], (err, res) => {
+        connection.query('SELECT * FROM entreprise WHERE id = ?', [id], (err, res) => {
             if (err) {
                 return reject(err)
             }
@@ -52,7 +52,7 @@ Entreprise.newEntreprise = entreprise => {
 };
 
 /* la modification d'une entreprise */
-Entreprise.updateEntreprise = (entreprise, id_entreprise) => {
+Entreprise.updateEntreprise = (entreprise, id) => {
     return new Promise((resolve, reject) => {
         const params = [
             entreprise.raison_social,
@@ -64,8 +64,9 @@ Entreprise.updateEntreprise = (entreprise, id_entreprise) => {
             entreprise.tel,
             entreprise.description,
             entreprise.statut,
+            id,
         ]
-        const query = 'UPDATE `entreprise` SET `raison_social`=?, `adresse`=?, `code_postal`=?, `ville`=?, `type`=?, `email`=?, `tel`=?, `description`=?, `statut`=? WHERE `entreprise`.`id_entreprise`= ?;'
+        const query = 'UPDATE `entreprise` SET `raison_social`=?, `adresse`=?, `code_postal`=?, `ville`=?, `type`=?, `email`=?, `tel`=?, `description`=?, `statut`=? WHERE `id`= ?;'
         connection.query(query, params, (err, res) => {
             if (err) {
                 return reject(err);
@@ -76,9 +77,9 @@ Entreprise.updateEntreprise = (entreprise, id_entreprise) => {
 };
 
 //supprimer une entreprise et ses contacts avec un paramètre id.
-Entreprise.deleteEntreprise = id_entreprise => {
+Entreprise.deleteEntreprise = id => {
     return new Promise((resolve, reject) => {
-        connection.query('DELETE FROM contact, entreprise WHERE id_entreprise = ?', [id_entreprise], (err, res) => {
+        connection.query('DELETE FROM entreprise WHERE id = ?', [id], (err, res) => {
             if (err) {
                 return reject(err)
             }

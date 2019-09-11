@@ -5,7 +5,7 @@ const contactRouter = express.Router();
 const Contact = require('../controllers/contactController');
 
 //recuperation les contacts
-contactRouter.get('/', async function(req, res) {
+contactRouter.get('/', async function (req, res) {
     try {
         let result = await Contact.findAllContacts();
         res.json(result);
@@ -16,9 +16,9 @@ contactRouter.get('/', async function(req, res) {
 });
 
 //recuperation les contacts d'une entreprise
-contactRouter.get('/entreprises/:id_entreprise', async function(req, res) {
+contactRouter.get('/entreprises/:id', async function (req, res) {
     try {
-        let result = await Contact.findAllContactsInEntreprise(req.param.id_entreprise);
+        let result = await Contact.findAllContactsInEntreprise(req.param.id);
         res.json(result);
     } catch (err) {
         console.log(err);
