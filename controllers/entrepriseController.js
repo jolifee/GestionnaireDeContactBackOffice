@@ -79,7 +79,7 @@ Entreprise.updateEntreprise = (entreprise, id) => {
 //supprimer une entreprise et ses contacts avec un paramètre id.
 Entreprise.deleteEntreprise = id => {
     return new Promise((resolve, reject) => {
-        connection.query('DELETE FROM entreprise WHERE id = ?', [id], (err, res) => {
+        connection.query('DELETE FROM entreprise WHERE id = ? ', [id], (err, res) => {
             if (err) {
                 return reject(err)
             }
